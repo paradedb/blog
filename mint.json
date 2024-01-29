@@ -1,0 +1,61 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "ParadeDB",
+  "logo": {
+    "light": "/images/logo.svg",
+    "dark": "/images/logo.svg",
+    "href": "https://paradedb.com"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#34d399",
+    "light": "#34d399",
+    "dark": "#34d399"
+  },
+  "modeToggle": {
+    "default": "dark",
+    "isHidden": true
+  },
+  "topbarLinks": [
+    {
+      "name": "Community",
+      "url": "https://join.slack.com/t/paradedbcommunity/shared_invite/zt-217mordsh-ielS6BiZf7VW3rqKBFgAlQ"
+    },
+    {
+      "name": "Docs",
+      "url": "https://docs.paradedb.com"
+    }
+  ],
+  "topbarCtaButton": {
+    "type": "github",
+    "url": "https://github.com/paradedb/paradedb"
+  },
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true
+  },
+  "navigation": [
+    {
+      "pages": [
+        "pages/introducing_analytics",
+        "pages/introducing_sparse",
+        "pages/introducing_bm25",
+        "pages/introducing_paradedb"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "github": "https://github.com/paradedb/paradedb",
+    "slack": "https://join.slack.com/t/paradedbcommunity/shared_invite/zt-217mordsh-ielS6BiZf7VW3rqKBFgAlQ",
+    "twitter": "https://twitter.com/paradedb"
+  },
+  "analytics": {
+    "ga4": {
+      "measurementId": "G-GB3C03LVY5"
+    }
+  },
+  "backgroundImage": "/background.png",
+  "integrations": {
+    "intercom": "d3sdz6rs"
+  }
+}
