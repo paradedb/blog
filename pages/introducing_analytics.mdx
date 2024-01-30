@@ -35,9 +35,10 @@ columns in a table.
 
 ParadeDB introduces a new kind of table called the `deltalake` table. `deltalake` tables behave like regular Postgres tables
 but use a column-oriented layout via Apache Arrow and leverage Apache DataFusion, a query engine
-optimized for column-oriented data. At table creation time, users can choose between row and column-oriented tables.
+optimized for column-oriented data. This means that users can choose between row and column-oriented storage at 
+table creation time.
 
-Arrow and Datafusion are integrated with Postgres through two features of the Postgres API — the table access method and
+Arrow and Datafusion are integrated with Postgres via two features of the Postgres API: the table access method and
 executor hooks. The table access method registers `deltalake` tables with the Postgres catalog and handles data
 manipulation language (DML) statements like inserts. Executor hooks intercept and reroute queries to DataFusion,
 which parses the query, constructs an optimal query plan, executes it, and returns the results to Postgres.
@@ -56,10 +57,10 @@ lakes like S3, which introduces the future possibility connecting Postgres table
 
 ## Why DataFusion
 
-Building a state-of-the-art analytical database in Postgres is expensive and very difficult to get right.
+Building a state-of-the-art analytical database in Postgres is a task that's expensive and difficult to get right.
 
-One of the first Postgres-based analytical databases was a project called Greenplum, released in 2005. Since
-then, several companies like Citus and Timescale have made similar products. The performance gap
+One of the first Postgres-based analytical databases, Greenplum, was released in 2005. Since
+then, several companies like Citus and Timescale have built similar products. However, the performance gap
 between these databases and their non-Postgres, OLAP counterparts is wide. This is one reason that systems
 like Elasticsearch are popular even among companies that prefer Postgres.
 
@@ -91,7 +92,9 @@ INSERT INTO t VALUES (1), (2), (3);
 SELECT COUNT(*) FROM t;
 ```
 
-The core ParadeDB team is focused on making `pg_analytics` production-ready.
+The core ParadeDB team is focused on making `pg_analytics` production-ready. Combined with `pg_bm25`, our 
+Postgres extension for full-text search, `pg_analytics` aims to make ParadeDB the best Elasticsearch alternative.
+
 We welcome community contributions and are active on [Slack](https://join.slack.com/t/paradedbcommunity/shared_invite/zt-217mordsh-ielS6BiZf7VW3rqKBFgAlQ).
 Finally, please don’t hesitate to show your support by [giving us a star](https://github.com/paradedb/paradedb)!
 
