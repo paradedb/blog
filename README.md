@@ -1,17 +1,17 @@
-# ParadeDB Documentation
+# ParadeDB Blog
 
-ParadeDB [documentation](https://docs.paradedb.com) is built using [Mintlify](https://mintlify.com/docs/quickstart).
+THe ParadeDB [blog](https://blog.paradedb.com) is built using [Mintlify](https://mintlify.com/docs/quickstart).
 
 ## 👩‍💻 Development
 
 Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview
-the documentation changes locally. To install, use the following command:
+the blog changes locally. To install, use the following command:
 
 ```bash
 npm i -g mintlify
 ```
 
-Run the following command at the root of your documentation (where mint.json is)
+Run the following command at the root of the blog (where `mint.json` is):
 
 ```bash
 mintlify dev
@@ -22,7 +22,7 @@ mintlify dev
 Changes will be deployed to production automatically after pushing to the default
 branch.
 
-You can also preview changes using PRs, which generates a preview link of the docs.
+You can also preview changes using PRs, which generates a preview link of the blog.
 
 ## Troubleshooting
 
