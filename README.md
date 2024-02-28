@@ -1,6 +1,6 @@
 # ParadeDB Blog
 
-THe ParadeDB [blog](https://blog.paradedb.com) is built using [Mintlify](https://mintlify.com/docs/quickstart).
+The ParadeDB [blog](https://blog.paradedb.com) is built using [Mintlify](https://mintlify.com/docs/quickstart).
 
 ## 👩‍💻 Development
 
