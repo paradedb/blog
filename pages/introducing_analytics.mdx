@@ -33,13 +33,13 @@ Regular Postgres tables, known as heap tables, organize data by row. While this 
 data, it is inefficient for analytical queries, which often scan a large amount of data from a subset of the
 columns in a table.
 
-ParadeDB introduces a new kind of table called the `deltalake` table. `deltalake` tables behave like regular Postgres tables
+ParadeDB introduces a new kind of table called the `parquet` table. `parquet` tables behave like regular Postgres tables
 but use a column-oriented layout via Apache Arrow and leverage Apache DataFusion, a query engine
 optimized for column-oriented data. This means that users can choose between row and column-oriented storage at 
 table creation time.
 
 Arrow and Datafusion are integrated with Postgres via two features of the Postgres API: the table access method and
-executor hooks. The table access method registers `deltalake` tables with the Postgres catalog and handles data
+executor hooks. The table access method registers `parquet` tables with the Postgres catalog and handles data
 manipulation language (DML) statements like inserts. Executor hooks intercept and reroute queries to DataFusion,
 which parses the query, constructs an optimal query plan, executes it, and returns the results to Postgres.
 
@@ -84,10 +84,10 @@ this toy example.
 
 ```sql
 CREATE EXTENSION pg_analytics;
--- Create a deltalake table
-CREATE TABLE t (a int) USING deltalake;
+-- Create a parquet table
+CREATE TABLE t (a int) USING parquet;
 -- pg_analytics supercharges the performance of any
--- Postgres query run on a deltalake table
+-- Postgres query run on a parquet table
 INSERT INTO t VALUES (1), (2), (3);
 SELECT COUNT(*) FROM t;
 ```
