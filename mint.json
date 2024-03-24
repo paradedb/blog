@@ -16,6 +16,12 @@
     "default": "dark",
     "isHidden": true
   },
+  "redirects": [
+    {
+      "source": "/pages/introducing_bm25",
+      "destination": "/pages/introducing_search"
+    }
+  ],
   "topbarLinks": [
     {
       "name": "Community",
@@ -40,7 +46,7 @@
       "pages": [
         "pages/introducing_analytics",
         "pages/introducing_sparse",
-        "pages/introducing_bm25",
+        "pages/introducing_search",
         "pages/introducing_paradedb"
       ]
     }
