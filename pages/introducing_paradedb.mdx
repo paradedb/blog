@@ -62,7 +62,7 @@ ParadeDB’s search engine is built on Tantivy, an open-source, Rust-based searc
 Search indexes are stored in Postgres as native Postgres indexes, which obviates the need to pipe data out of Postgres
 and duplicate it in foreign services and guarantees transaction safety.
 
-ParadeDB introduces a new extension to the Postgres ecosystem: `pg_bm25`. `pg_bm25` implements
+ParadeDB introduces a new extension to the Postgres ecosystem: `pg_search`. `pg_search` implements
 Rust-based full text search in Postgres using the BM25 scoring algorithm. This extension comes pre-installed
 with ParadeDB.
 
