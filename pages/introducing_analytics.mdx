@@ -4,12 +4,7 @@ title: "pg_analytics: Transforming Postgres into a Fast OLAP Database"
 
 <Card title="Relative Query Time">
   Scores measured by Clickbench. Lower scores are better.
-  <img
-    height="300"
-    src="/images/clickbench_time.png"
-    noZoom
-    className="mt-1"
-  />
+  <img height="300" src="/images/clickbench_time.png" noZoom className="mt-1" />
 </Card>
 
 We're excited to introduce `pg_analytics`, an extension that accelerates the native analytical performance of
@@ -35,7 +30,7 @@ columns in a table.
 
 ParadeDB introduces a new kind of table called the `parquet` table. `parquet` tables behave like regular Postgres tables
 but use a column-oriented layout via Apache Arrow and leverage Apache DataFusion, a query engine
-optimized for column-oriented data. This means that users can choose between row and column-oriented storage at 
+optimized for column-oriented data. This means that users can choose between row and column-oriented storage at
 table creation time.
 
 Arrow and Datafusion are integrated with Postgres via two features of the Postgres API: the table access method and
@@ -92,7 +87,7 @@ INSERT INTO t VALUES (1), (2), (3);
 SELECT COUNT(*) FROM t;
 ```
 
-The core ParadeDB team is focused on making `pg_analytics` production-ready. Combined with `pg_bm25`, our 
+The core ParadeDB team is focused on making `pg_analytics` production-ready. Combined with `pg_search`, our
 Postgres extension for full-text search, `pg_analytics` aims to make ParadeDB the best Elasticsearch alternative.
 
 We welcome community contributions and are active on [Slack](https://join.slack.com/t/paradedbcommunity/shared_invite/zt-217mordsh-ielS6BiZf7VW3rqKBFgAlQ).
