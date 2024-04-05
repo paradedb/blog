@@ -44,6 +44,7 @@
     {
       "group": "Blog",
       "pages": [
+        "pages/homepage",
         "pages/introducing_analytics",
         "pages/introducing_sparse",
         "pages/introducing_search",
@@ -61,8 +62,5 @@
       "measurementId": "GTM-KMGRG564"
     }
   },
-  "backgroundImage": "/background.png",
-  "integrations": {
-    "intercom": "d3sdz6rs"
-  }
+  "backgroundImage": "/background.png"
 }
