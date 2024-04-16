@@ -58,6 +58,9 @@
     "twitter": "https://twitter.com/paradedb"
   },
   "analytics": {
+    "ga4": {
+      "measurementId": "G-FETB619BM4"
+    },
     "gtm": {
       "tagId": "GTM-KMGRG564"
     }
