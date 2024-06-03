@@ -1,0 +1,40 @@
+---
+title: "pg_lakehouse: A DuckDB Alternative in Postgres"
+---
+
+<p align="center">
+  Written by <a href="https://www.linkedin.com/in/ming-ying">Ming Ying</a> on
+  June 3, 2024
+</p>
+
+<img src="/images/lakehouse.png" style={{borderRadius: 10}} noZoom/>
+
+Our newest extension, `pg_lakehouse`, transforms Postgres into a DuckDB alternative. With `pg_lakehouse` installed, Postgres can directly query any external object 
+store like S3, table format like Delta Lake, or file format like Parquet or CSV. Like DuckDB, the extension uses a column-oriented, analytical query engine called DataFusion, 
+which delivers very fast performance.
+
+## Putting a Foreign Data Wrapper on Steroids
+
+Under the hood, `pg_lakehouse` uses the foreign data wrapper API to connect to external data sources. While there are other foreign data wrappers in the Postgres ecosystem, `pg_lakehouse` differentiates in two ways:
+
+1. **Highly performant**: Queries are pushed down to Apache DataFusion, an analytical query engine that’s 8X faster than ElasticSearch and rivals the performance of state-of-the-art analytical engines.
+
+— insert benchmarks
+
+1. **Breadth of coverage**: Foreign data wrappers like `parquet_fdw` or `aws_s3` are built for a specific file format or data store. Because integrating with a new data source means writing a new extension, Postgres does not support the long tail of data sources, table formats, and file formats. `pg_lakehouse` solves this problem by using Apache OpenDAL, a data access library for 40+ data stores.
+
+| **Supported Today** |  |  |
+| --- | --- | --- |
+| **Data Source** | **File Format** | **Table Format** |
+| Amazon S3 | Parquet | Delta Lake |
+| S3 Compatible Stores (e.g. MinIO) | CSV |  |
+| Google Cloud Storage | JSON |  |
+| Local File System | Avro |  |
+| Azure Blob Storage |  |  |
+| Azure ADLS Gen2 |  |  |
+| **Coming Soon** |  |  |
+| HDFS | Orc | Apache Iceberg |
+| MongoDB |  |  |
+| …and many more |  |  |
+
+## Get Started
