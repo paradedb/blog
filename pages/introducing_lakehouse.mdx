@@ -14,7 +14,7 @@ query external object stores like S3, table formats like Delta Lake, and file fo
 
 There are two main goals of `pg_lakehouse`:
 
-1. Enable fast analytical queries over data lakes without any tools outside of Postgres.
+1. Enable fast analytics over data lakes without any tools besides Postgres.
 2. Easily join and move data between Postgres tables and data lakes.  
 
 ## Putting a Foreign Data Wrapper on Steroids
@@ -188,6 +188,31 @@ These new results will soon be published to Clickbench. The live Clickbench resu
     </td>
   </tr>
 </table>
+
+## How It's Built
+
+<img src="/images/lakehouse_architecture.png" style={{ borderRadius: 10 }} noZoom />
+
+`pg_lakehouse` uses two Postgres APIs: the executor hook and foreign data wrapper. In Postgres, the executor hook is a function responsible for the actual execution of the query, and
+is run immediately after Postgres generates a query plan. `pg_lakehouse` overrides the default Postgres executor hook to reroute foreign table queries to DataFusion, which executes the 
+full query and returns rows back to the user.
+
+If the query fails for any reason inside DataFusion, it gracefully falls back to Postgres. This is where the foreign data wrapper comes in. One responsibility of the foreign
+data wrapper is to execute a full scan of the foreign table and send rows to the Postgres query engine.
+
+Typically, a query will fall back to Postgres if it contains a clause that cannot (yet) be pushed down to DataFusion. Users can determine which query engine was used by running
+`EXPLAIN`.
+
+```sql SQL
+EXPLAIN SELECT COUNT(*) FROM trips;
+                  QUERY PLAN
+----------------------------------------------
+ DataFusionScan: LogicalPlan
+  Projection: COUNT(*)
+   Aggregate: groupBy=[[]], aggr=[[COUNT(*)]]
+     TableScan: trips
+(4 rows)
+```
 
 ## Getting Started
 
