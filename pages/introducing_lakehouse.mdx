@@ -7,11 +7,15 @@ title: "pg_lakehouse: A DuckDB Alternative in Postgres"
   June 3, 2024
 </p>
 
-<img src="/images/lakehouse.png" style={{borderRadius: 10}} noZoom/>
+<img src="/images/lakehouse.png" style={{ borderRadius: 10 }} noZoom />
 
-Our newest extension, `pg_lakehouse`, transforms Postgres into a DuckDB alternative. With `pg_lakehouse` installed, Postgres can directly query any external object 
-store like S3, table format like Delta Lake, or file format like Parquet or CSV. Like DuckDB, the extension uses a column-oriented, analytical query engine called DataFusion, 
-which delivers very fast performance.
+Our newest extension, [`pg_lakehouse`](https://github.com/paradedb/paradedb/tree/dev/pg_lakehouse), transforms Postgres into a DuckDB alternative. Like DuckDB, `pg_lakehouse` allows Postgres to directly 
+query external object stores like S3, table formats like Delta Lake, and file formats like Parquet. 
+
+There are two main goals of `pg_lakehouse`:
+
+1. Enable fast analytical queries over data lakes without any tools outside of Postgres.
+2. Easily join and move data between Postgres tables and data lakes.  
 
 ## Putting a Foreign Data Wrapper on Steroids
 
@@ -19,22 +23,241 @@ Under the hood, `pg_lakehouse` uses the foreign data wrapper API to connect to e
 
 1. **Highly performant**: Queries are pushed down to Apache DataFusion, an analytical query engine that’s 8X faster than ElasticSearch and rivals the performance of state-of-the-art analytical engines.
 
-— insert benchmarks
+<img
+  src="/images/clickbench_lakehouse_hot.png"
+  style={{ padding: 20, background: "#ffffff", borderRadius: 10 }}
+  noZoom
+/>
 
-1. **Breadth of coverage**: Foreign data wrappers like `parquet_fdw` or `aws_s3` are built for a specific file format or data store. Because integrating with a new data source means writing a new extension, Postgres does not support the long tail of data sources, table formats, and file formats. `pg_lakehouse` solves this problem by using Apache OpenDAL, a data access library for 40+ data stores.
+<Note>
+These new results will soon be published to Clickbench. The live Clickbench results are from an earlier version of ParadeDB.
+</Note>
 
-| **Supported Today** |  |  |
-| --- | --- | --- |
-| **Data Source** | **File Format** | **Table Format** |
-| Amazon S3 | Parquet | Delta Lake |
-| S3 Compatible Stores (e.g. MinIO) | CSV |  |
-| Google Cloud Storage | JSON |  |
-| Local File System | Avro |  |
-| Azure Blob Storage |  |  |
-| Azure ADLS Gen2 |  |  |
-| **Coming Soon** |  |  |
-| HDFS | Orc | Apache Iceberg |
-| MongoDB |  |  |
-| …and many more |  |  |
+2. **Breadth of coverage**: Foreign data wrappers like `parquet_fdw` or `aws_s3` are built for a specific file format or data store. Because integrating with a new data source typically means writing a new extension, the long tail of data sources, table formats, and file formats are not supported in Postgres. 
+`pg_lakehouse` solves this problem by using Apache OpenDAL, a data access library for 40+ data stores.
 
-## Get Started
+<table
+  id="table"
+  style={{
+    width: "100%",
+    borderCollapse: "collapse",
+    border: "0.75px solid #222",
+    borderRadius: "10px"
+  }}
+>
+  <tr style={{ display: "flex", color: "#efefef" }}>
+    <th
+      align="center"
+      style={{ width: "100%", textAlign: "left", paddingLeft: 32, fontSize: 16 }}
+    >
+      Currently Supported
+    </th>
+  </tr>
+  <tr style={{ display: "flex", borderBottom: "0.75px solid #222", color: "#efefef" }}>
+    <th
+      align="center"
+      style={{ width: "34%", textAlign: "left", paddingLeft: 32 }}
+    >
+      Object Stores
+    </th>
+    <th
+      align="center"
+      style={{ width: "33%", textAlign: "left", paddingLeft: 32  }}
+    >
+      File Formats
+    </th>
+    <th
+      align="center"
+      style={{ width: "33%", textAlign: "left", paddingLeft: 32  }}
+    >
+      Table Formats
+    </th>
+  </tr>
+  <tr style={{ display: "flex" }}>
+    <td
+      align="center"
+      style={{ width: "34%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+      Amazon S3
+    </td>
+    <td
+      align="center"
+      style={{ width: "33%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+      Parquet
+    </td>
+    <td
+      align="center"
+      style={{ width: "33%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+     Delta Lake 
+    </td>
+  </tr>
+  <tr style={{ display: "flex" }}>
+    <td
+      align="center"
+      style={{ width: "34%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+       S3-compatible (e.g. MinIO)
+    </td>
+    <td
+      align="center"
+      style={{ width: "33%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+      CSV
+    </td>
+    <td
+      align="center"
+      style={{ width: "33%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+        Iceberg (Coming Soon)
+    </td>
+  </tr>
+  <tr style={{ display: "flex" }}>
+    <td
+      align="center"
+      style={{ width: "34%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+       Azure Blob Storage
+    </td>
+    <td
+      align="center"
+      style={{ width: "33%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+      JSON
+    </td>
+    <td
+      align="center"
+      style={{ width: "33%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+    </td>
+  </tr>
+  <tr style={{ display: "flex" }}>
+    <td
+      align="center"
+      style={{ width: "34%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+       Azure Data Lake Storage Gen2
+    </td>
+    <td
+      align="center"
+      style={{ width: "33%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+      Avro
+    </td>
+    <td
+      align="center"
+      style={{ width: "33%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+    </td>
+  </tr>
+  <tr style={{ display: "flex" }}>
+    <td
+      align="center"
+      style={{ width: "34%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+        Google Cloud Storage
+    </td>
+    <td
+      align="center"
+      style={{ width: "33%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+    </td>
+    <td
+      align="center"
+      style={{ width: "33%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+    </td>
+  </tr>
+  <tr style={{ display: "flex" }}>
+    <td
+      align="center"
+      style={{ width: "34%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+        Local File System
+    </td>
+    <td
+      align="center"
+      style={{ width: "33%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+    </td>
+    <td
+      align="center"
+      style={{ width: "33%", borderBottom: "0.5px solid #1f1f1f", textAlign: "left", paddingLeft: 32 }}
+    >
+    </td>
+  </tr>
+</table>
+
+## Getting Started
+
+We've provided an example Parquet file of 3 million NYC taxi trips hosted in a public S3 bucket for testing. After the extension
+is [installed](https://github.com/paradedb/paradedb/tree/dev/pg_search#installation), you can run the following code to query this dataset:
+
+```sql
+CREATE EXTENSION pg_lakehouse;
+
+CREATE FOREIGN DATA WRAPPER s3_wrapper
+HANDLER s3_fdw_handler
+VALIDATOR s3_fdw_validator;
+
+-- Provide S3 credentials
+CREATE SERVER s3_server FOREIGN DATA WRAPPER s3_wrapper
+OPTIONS (
+    region 'us-east-1',
+    allow_anonymous 'true'
+);
+
+-- Create foreign table
+CREATE FOREIGN TABLE trips (
+    "VendorID"              INT,
+    "tpep_pickup_datetime"  TIMESTAMP,
+    "tpep_dropoff_datetime" TIMESTAMP,
+    "passenger_count"       BIGINT,
+    "trip_distance"         DOUBLE PRECISION,
+    "RatecodeID"            DOUBLE PRECISION,
+    "store_and_fwd_flag"    TEXT,
+    "PULocationID"          REAL,
+    "DOLocationID"          REAL,
+    "payment_type"          DOUBLE PRECISION,
+    "fare_amount"           DOUBLE PRECISION,
+    "extra"                 DOUBLE PRECISION,
+    "mta_tax"               DOUBLE PRECISION,
+    "tip_amount"            DOUBLE PRECISION,
+    "tolls_amount"          DOUBLE PRECISION,
+    "improvement_surcharge" DOUBLE PRECISION,
+    "total_amount"          DOUBLE PRECISION
+)
+SERVER s3_server
+OPTIONS (
+    path 's3://paradedb-benchmarks/yellow_tripdata_2024-01.parquet',
+    extension 'parquet'
+);
+
+-- Success! Now you can query the file like a regular Postgres table
+SELECT COUNT(*) FROM trips;
+  count
+---------
+ 2964624
+(1 row)
+```
+
+To connect your own object store, please refer to our [documentation](https://docs.paradedb.com/analytics/quickstart).
+
+## What's Next
+
+Our development efforts over the coming months are focused around three areas:
+
+1. **Write Support**: `pg_lakehouse` is currently read-only from object stores. Adding write support will enable developers to 
+further centralize data lake operations inside Postgres.
+
+2. **Iceberg Support**: We are building support for Apache Iceberg tables. This will likely involve contributing to the [`iceberg-rust`](https://github.com/apache/iceberg-rust) 
+project.
+
+3. **Wider Object Store Coverage**: ParadeDB uses [Apache OpenDAL](https://github.com/apache/opendal) to integrate with object stores. This makes it
+straightforward to add support for many other object stores. To request prioritization for a specific object store, please open a 
+[Github issue](https://github.com/paradedb/paradedb/issues).
+
+`pg_lakehouse` is open-source and licensed under AGPL. If you'd like to contribute, the best place to start is our
+[Slack community](https://join.slack.com/t/paradedbcommunity/shared_invite/zt-217mordsh-ielS6BiZf7VW3rqKBFgAlQ). And please don't hesitate to show your support by
+[giving us a star](https://github.com/paradedb/paradedb)!
