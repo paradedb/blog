@@ -44,8 +44,7 @@
     {
       "group": "Blog",
       "pages": [
-        "pages/homepage",
-        "pages/introducing_analytics",
+        "pages/introducing_lakehouse",
         "pages/introducing_sparse",
         "pages/introducing_search",
         "pages/introducing_paradedb"
