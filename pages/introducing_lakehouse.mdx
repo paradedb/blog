@@ -293,12 +293,12 @@ Under the hood, `pg_lakehouse` uses the foreign data wrapper API to connect to e
   noZoom
 />
 
-`pg_lakehouse` uses two Postgres APIs: the executor hook and foreign data wrapper. In Postgres, the executor hook is a function responsible for the actual execution of the query, and
-is run immediately after Postgres generates a query plan. `pg_lakehouse` overrides the default Postgres executor hook to reroute foreign table queries to DataFusion, which executes the
-full query and returns rows back to the user.
+`pg_lakehouse` uses two Postgres APIs: the executor hook and foreign data wrapper. In Postgres, the executor hook is a function — run immediately after a query plan is generated — that
+executes the query plan. Extensions can override this function with custom logic. `pg_lakehouse`'s executor hook reroutes foreign table queries to DataFusion, which executes
+the query instead of the Postgres query engine.
 
 If the query fails for any reason inside DataFusion, it gracefully falls back to Postgres. This is where the foreign data wrapper comes in. One responsibility of the foreign
-data wrapper is to execute a full scan of the foreign table and send rows to the Postgres query engine.
+data wrapper is to scan the foreign table and send rows to the Postgres query engine.
 
 Typically, a query will fall back to Postgres if it contains a clause that cannot (yet) be pushed down to DataFusion. Users can determine which query engine was used by running
 `EXPLAIN`.
