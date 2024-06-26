@@ -19,7 +19,7 @@ DataFusion and DuckDB.
 
 ## What is Apache Iceberg?
 
-Built for analytics over large datasets, Iceberg is an open source specification for organizing metadata around files like Parquet. Iceberg metadata allows these files can be treated as
+Built for analytics over large datasets, Iceberg is an open-source specification for organizing metadata around files like Parquet. Iceberg metadata allows these files to be treated as
 SQL tables with features like ACID transactions, schema evolution, time travel, and partitioning. For this reason, Iceberg is commonly referred to as a table format.
 
 ## Supporting Iceberg in Postgres
@@ -69,7 +69,7 @@ extension points than DuckDB’s, which we hoped would simplify the integration 
 ### Growing Adoption
 
 DataFusion is quickly becoming the de facto query engine of modern analytical databases. InfluxDB, a popular time series database, relies on DataFusion and has contributed heavily to its
-development. Comet, a Spark accelerator built on DataFusion, was open sourced by Apple in February 2024. And in June 2024, DataFusion became a top-level Apache project.
+development. Comet, a Spark accelerator built on DataFusion, was open-sourced by Apple in February 2024. And in June 2024, DataFusion became a top-level Apache project.
 
 ### Written in Rust
 
@@ -80,7 +80,7 @@ Whereas DuckDB is written in C/C++, DataFusion is written in Rust. We felt more 
 After months of using DataFusion, we decided to go all in on [DuckDB](https://github.com/duckdb/duckdb). This was not because we were dissatisfied with DataFusion — in fact, we found
 DataFusion to be an incredibly robust and ergonomic library — but because our use case changed.
 
-Last month, we quietly paused development on our original analytics extension, `pg_analytics`(we’ll share why in a future blog post). `pg_analytics` used the Postgres table access method, which
+Last month, we quietly paused development on our original analytics extension, `pg_analytics` (we’ll share why in a future blog post). `pg_analytics` used the Postgres table access method, which
 meant that it was our responsibility to implement many of the complex features of Postgres like write-ahead logs, multi-version concurrency control, support for various transaction levels,
 buffer caching, etc. DataFusion’s extensibility was very useful here.
 
@@ -107,7 +107,7 @@ DataFusion’s performance is catching up, the performance boost resonates with 
 
 ## Next Steps
 
-The next big feature we’re working on for`pg_lakehouse` is write support, which will enable Postgres tables to be copied into external object stores as Parquet or CSV files.
+The next big feature we’re working on for `pg_lakehouse` is write support, which will enable Postgres tables to be copied into external object stores as Parquet or CSV files.
 
 Iceberg is supported on `pg_lakehouse` version `0.8.0` or later. You can either install the extension or run the Docker image. If you have any questions, the best place to start is our
 [Slack community](https://join.slack.com/t/paradedbcommunity/shared_invite/zt-2lkzdsetw-OiIgbyFeiibd1DG~6wFgTQ). And please don't hesitate to show your support by
