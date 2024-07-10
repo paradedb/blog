@@ -80,7 +80,7 @@ Whereas DuckDB is written in C/C++, DataFusion is written in Rust. We felt more 
 After months of using DataFusion, we decided to go all in on [DuckDB](https://github.com/duckdb/duckdb). This was not because we were dissatisfied with DataFusion — in fact, we found
 DataFusion to be an incredibly robust and ergonomic library — but because our use case changed.
 
-Last month, we quietly paused development on our original analytics extension, `pg_analytics`(we’ll share why in a future blog post). `pg_analytics` used the Postgres table access method, which
+Last month, we quietly paused development on our original analytics extension, `pg_analytics` (we’ll share why in a future blog post). `pg_analytics` used the Postgres table access method, which
 meant that it was our responsibility to implement many of the complex features of Postgres like write-ahead logs, multi-version concurrency control, support for various transaction levels,
 buffer caching, etc. DataFusion’s extensibility was very useful here.
 
