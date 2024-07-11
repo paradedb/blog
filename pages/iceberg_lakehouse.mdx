@@ -10,16 +10,22 @@ title: Putting DuckDB in Postgres to Query Iceberg
   noZoom
 />
 
-Since we launched `pg_lakehouse`, integration with [Apache Iceberg](https://iceberg.apache.org/) has been our most widely requested feature. Today, we’re excited to announce that Iceberg tables are supported. With
-`pg_lakehouse` installed, Postgres can directly query Iceberg tables stored in the local file system or in cloud storage.
+Today, a growing number of organizations are offloading large volumes of historical data from Postgres to S3
+due to its scalability and cost effectiveness. Many of these organizations are also adopting
+[Apache Iceberg](https://iceberg.apache.org/), a [table format](#what-is-apache-iceberg) that enables S3 data to be
+queried like SQL tables.
 
+While query engines like Trino, Spark, or Flink integrate with Iceberg, Postgres does not. Since we launched `pg_lakehouse`,
+Iceberg integration has been our most widely requested feature.
+
+We’re excited to announce that Iceberg tables are now supported for S3 and Google Cloud Storage.
 As part of this release, we’ve replaced `pg_lakehouse`’s DataFusion query engine with DuckDB. We initially experimented with DuckDB for its Iceberg support and have been pleasantly
 surprised by the ways that DuckDB has accelerated our engineering efforts. In the latter half of this blog post, we’ll share some of the benefits and tradeoffs we’ve seen between
 DataFusion and DuckDB.
 
 ## What is Apache Iceberg?
 
-Built for analytics over large datasets, Iceberg is an open-source specification for organizing metadata around files like Parquet. Iceberg metadata allows these files to be treated as
+Built for analytics over large datasets, Iceberg is an open source specification for organizing metadata around files like Parquet. Iceberg metadata allows these files can be treated as
 SQL tables with features like ACID transactions, schema evolution, time travel, and partitioning. For this reason, Iceberg is commonly referred to as a table format.
 
 ## Supporting Iceberg in Postgres
@@ -69,7 +75,7 @@ extension points than DuckDB’s, which we hoped would simplify the integration 
 ### Growing Adoption
 
 DataFusion is quickly becoming the de facto query engine of modern analytical databases. InfluxDB, a popular time series database, relies on DataFusion and has contributed heavily to its
-development. Comet, a Spark accelerator built on DataFusion, was open-sourced by Apple in February 2024. And in June 2024, DataFusion became a top-level Apache project.
+development. Comet, a Spark accelerator built on DataFusion, was open sourced by Apple in February 2024. And in June 2024, DataFusion became a top-level Apache project.
 
 ### Written in Rust
 
@@ -107,7 +113,7 @@ DataFusion’s performance is catching up, the performance boost resonates with 
 
 ## Next Steps
 
-The next big feature we’re working on for `pg_lakehouse` is write support, which will enable Postgres tables to be copied into external object stores as Parquet or CSV files.
+The next big feature we’re working on for`pg_lakehouse` is write support, which will enable Postgres tables to be copied into external object stores as Parquet or CSV files.
 
 Iceberg is supported on `pg_lakehouse` version `0.8.0` or later. You can either install the extension or run the Docker image. If you have any questions, the best place to start is our
 [Slack community](https://join.slack.com/t/paradedbcommunity/shared_invite/zt-2lkzdsetw-OiIgbyFeiibd1DG~6wFgTQ). And please don't hesitate to show your support by
