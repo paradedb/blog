@@ -43,15 +43,15 @@ speeds.
 
 ### Key Takeaway
 
-Postgres FTS is ideal for search over small to medium-sized tables that do not require sophisticated FTS queries. We’re being intentionally vague about what “medium-sized” and “sophisticated” entail — the specifics can vary depending on your performance requirements. Luckily, testing and migrating to/from Postgres FTS is fairly straightforward.
+Postgres FTS is ideal for search over small to medium-sized tables that do not require sophisticated FTS queries. We’re being intentionally vague about what “medium-sized” and “sophisticated” entail — the specifics vary depending on your performance requirements. Luckily, testing and migrating to/from Postgres FTS is fairly straightforward.
 
 ## Elasticsearch
 
-While Elastic today offers a wide variety of products, its core product, Elasticsearch, is a data store and full-text search engine.
+While Elastic today offers a wide variety of products, its core product, Elasticsearch, is a data store and full text search engine.
 
 ### The Good
 
-1. **Comprehensive Feature Set**. Elasticsearch is capable of handling almost any FTS query. The Elastic Query DSL (domain-specific language) is the gold standard for full-text search capabilities.
+1. **Comprehensive Feature Set**. Elasticsearch is capable of handling almost any FTS query. The Elastic Query DSL (domain-specific language) is the gold standard for full text search capabilities.
 2. **Performant**. Our [benchmarks](https://github.com/paradedb/paradedb/tree/dev/benchmarks#results) show that Elasticsearch can query billions of rows in milliseconds thanks to its underlying battle-tested Lucene search engine and distributed architecture.
 3. **More than Search**. Beyond FTS, Elasticsearch is also an analytical query engine, vector database, security and observability platform. Many organizations enjoy the simplicity of consolidating several services within Elasticsearch.
 
@@ -64,7 +64,7 @@ While Elastic today offers a wide variety of products, its core product, Elastic
 
 ### Key Takeaway
 
-ElasticSearch delivers excellent search performance at the price of operational overhead and data freshness. We recommend Elasticsearch if more lightweight alternatives cannot get the job done or if you intend on using other Elasticsearch services.
+Elasticsearch delivers excellent search performance at the price of operational overhead and data freshness. We recommend Elasticsearch if more lightweight alternatives cannot get the job done or if you intend on using other Elasticsearch services.
 
 ## Alternative Search Engines
 
@@ -74,6 +74,6 @@ While each service differentiates around the edges, there’s an important cavea
 
 ## Is the Best of Both Worlds Possible?
 
-ParadeDB is a full-text search engine built for Postgres, powered by a Postgres extension called `pg_search`. Like native Postgres FTS, ParadeDB plugs into any existing, self-managed Postgres database with no additional infrastructure. Like Elasticsearch, ParadeDB provides the capabilities of an advanced full-text search engine. It’s the main reason why ParadeDB is one of the [fastest growing database projects](https://github.com/paradedb/paradedb) in recent years.
+ParadeDB is a full text search engine built for Postgres, powered by a Postgres extension called `pg_search`. Like native Postgres FTS, ParadeDB plugs into any existing, self-managed Postgres database with no additional infrastructure. Like Elasticsearch, ParadeDB provides the capabilities of an advanced full text search engine. It’s the main reason why ParadeDB is one of the [fastest growing database projects](https://github.com/paradedb/paradedb) in recent years.
 
 Compatibility with managed Postgres services like Amazon RDS is coming soon. To get notified when it’s ready, we invite you to fill out our [interest form](https://form.typeform.com/to/jHkLmIzx?typeform-source=paradedb.typeform.com).
