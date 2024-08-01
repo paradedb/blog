@@ -48,6 +48,7 @@
         "pages/iceberg_lakehouse",
         "pages/case_study_sweetspot",
         "pages/introducing_lakehouse",
+        "pages/introducing_analytics",
         "pages/introducing_sparse",
         "pages/introducing_search",
         "pages/introducing_paradedb"
