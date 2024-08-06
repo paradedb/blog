@@ -18,9 +18,9 @@ ParadeDB is an open-source Elasticsearch alternative built on Postgres. The advi
 
 ## Why the Right License Matters
 
-First, we’re not lawyers. This is not legal advice. With this out of the way, we see open source licenses as a contract among authors, community contributors, and users. By defining what each party can expect when they use, modify, or distribute a project, the license facilitates successful cooperation among strangers.
+We see open-source licenses as a contract among authors, community contributors, and users. By defining what each party can expect when they use, modify, or distribute a project, the license facilitates successful cooperation among strangers.
 
-The license is also one of the first things developers read after discovering a new project. First impressions matter and the license shapes how developers perceive the project’s goals, which affects whether they feel compelled to contribute and join the community.
+The license is also one of the first things that companies read when deciding whether to adopt a project. Companies are much more likely to use projects with licenses that are already approved by their legal team.
 
 Over the years, we’ve seen authors of large open source projects leave the choice of license as an afterthought, only to realize too late that they are unhappy with their license. If the authors change the project’s license, they risk alienating their users, who feel that the contract they implicitly signed has been broken. We wanted to avoid this by being thoughtful about our choice of license early on.
 
@@ -30,7 +30,7 @@ There were three goals we wanted to accomplish with our license:
 
 1. **Be familiar**. We’re developers, not lawyers. Neither are our users and contributors. Our license should be easy to understand and common enough that most developers are already familiar with it. Users should not need to read a custom license to decide whether they can adopt a project.
 2. **Be future-proof**. We wanted to protect our IP from cloud vendors early on so that we would never need to relicense. Our users should trust that our project will stand the test of time, so they can feel comfortable adopting it for the long term.
-3. **Be community-driven**. We wanted our project to be true open-source with a license approved by the Open Source Initiative (OSI). We believe that approved licenses incentivize developers to contribute to a project. On the flip side, we've seen many projects with unapproved or very restrictive licenses get forked, which fragments the project’s community.
+3. **Be community-driven**. We wanted our project to be true open-source with a license approved by the Open Source Initiative (OSI). We believe that approved licenses incentivize developers to contribute to a project. On the flip side, we've seen many projects that start with an unrestrictive license but switch to a more restrictive license get forked, which fragments the project’s community.
 
 ## Licenses We Evaluated
 
@@ -246,7 +246,7 @@ Whether each license meets these criteria is subjective and open to debate, so w
 
 AGPL was the only license that met all our criteria.
 
-1. **Familiar.** AGPL is a well-known license. It has been adopted by many projects in our space (data infra) like [MinIO](https://github.com/minio/minio), [Grafana](https://github.com/grafana/grafana), [Citus](https://github.com/citusdata/citus), and [Quickwit](https://github.com/quickwit-oss/quickwit).
+1. **Familiar.** When it comes to businesses the AGPL license has been hugely helpful. It's been tested and used for years by companies like [MinIO](https://github.com/minio/minio), [Grafana](https://github.com/grafana/grafana), [Citus](https://github.com/citusdata/citus), and [Quickwit](https://github.com/quickwit-oss/quickwit). As a result, most companies with legal teams will already have a policy in place for whether or not they can use AGPL licensed code.
 2. **Future-Proof**: Thanks to the copyleft provision, cloud vendors cannot easily resell our project without our consent. This gives us confidence in our ability to monetize without fear of predatory competition. ParadeDB just turned one year old, and we’ve already been contacted by four cloud providers who, had we not chosen the AGPL license, may have privately forked and distributed ParadeDB.
 3. **Community-Driven**: AGPL is officially approved by the Open Source Initiative. When we started ParadeDB, we wanted to be honest with our community. We did not feel comfortable calling ourselves open source under an unapproved license but wanted to acknowledge our ambition to build a sustainable open-source business. AGPL struck the perfect balance.
 
