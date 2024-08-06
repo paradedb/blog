@@ -6,6 +6,19 @@ title: "pg_lakehouse: A DuckDB Alternative in Postgres"
 
 <img src="/images/lakehouse.png" style={{ borderRadius: 10 }} noZoom />
 
+<Note>
+  With the release of `v0.10.0`, `pg_analytics` and `pg_lakehouse` have been
+  combined into a single extension, `pg_analytics`, that supports fast
+  analytical queries over both Postgres tables and data lakes. The new version
+  of `pg_analytics` supersedes the version of `pg_lakehouse` described in this
+  post. Read the official announcement [here](TODO).
+</Note>
+
+With the release of `v0.10.0`, `pg_analytics` and `pg_lakehouse` have been combined
+into a single extension, `pg_analytics`, that supports fast analytical queries over
+both Postgres and data lakes. The new version of `pg_analytics` supersedes the version
+described in this post. Read the official announcement [here](TODO).
+
 Our newest extension, [`pg_lakehouse`](https://github.com/paradedb/paradedb/tree/dev/pg_lakehouse), transforms Postgres into a DuckDB alternative. Like DuckDB, `pg_lakehouse` allows Postgres to directly
 query external object stores like S3, table formats like Delta Lake, and file formats like Parquet.
 
