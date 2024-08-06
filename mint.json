@@ -13,8 +13,7 @@
     "dark": "#34d399"
   },
   "modeToggle": {
-    "default": "dark",
-    "isHidden": true
+    "default": "light"
   },
   "redirects": [
     {
@@ -44,6 +43,7 @@
     {
       "group": "Blog",
       "pages": [
+        "pages/agpl",
         "pages/elasticsearch_vs_postgres",
         "pages/iceberg_lakehouse",
         "pages/case_study_sweetspot",
