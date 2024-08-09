@@ -206,7 +206,7 @@ and `ef_search=40`. With HNSW, this search took 6ms. Without HNSW, this search t
 ## Wrapping Up
 
 `pg_sparse` is the latest installment in our roadmap to building an Elasticsearch alternative on Postgres. Now, Postgres
-is capable of full-text search (via `pg_search`), dense vector search (via `pgvector`), and sparse vector
+is capable of full text search (via `pg_search`), dense vector search (via `pgvector`), and sparse vector
 search.
 
 `pg_sparse` is compatible alongside both `pg_search` and `pgvector`. In the future, we’d love to have our work merged upstream as part of one `pgvector` extension. A unified extension for all types of vector search is simpler to use and maintain, and would also enable sparse vector search in managed Postgres databases like AWS RDS that already support `pgvector`.
